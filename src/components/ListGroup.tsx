@@ -1,11 +1,8 @@
-import React from "react";
-import { MouseEvent } from "react";
-
+import React, { useState } from "react";
 function ListGroup() {
   let items = ["NewYork", "Chicago", "Arkansas", "Minnesota", "Tennesse"];
 
-//event Handler
-  const handleClick = (event: MouseEvent) => console.log(event);
+  const [selectedIndex, setSelectedIndex] = useState(-1); // this useState function is called as a Hook. A hook is a built in function that allows to tap into react features. useSate hook is used to if the data of the component need to be upated or changed.
 
   return (
     <>
@@ -14,7 +11,17 @@ function ListGroup() {
       {items.length === 0 && <p>No Items found</p>}
       <ul className="list-group">
         {items.map((item, index) => (
-          <li className="list-group-item" key={item} onClick={handleClick}>
+          <li
+            className={
+              selectedIndex === index
+                ? "list-group-item active"
+                : "list-group-item"
+            }
+            key={item}
+            onClick={() => {
+              setSelectedIndex(index);
+            }}
+          >
             {item}
           </li>
         ))}
