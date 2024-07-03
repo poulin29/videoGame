@@ -1,39 +1,17 @@
-import { Fragment, useState } from "react";
+import React from "react";
 
-// {items: [], heading: string}
-interface ListGroupProps {
-  items: string[];
-  heading: string;
-  onSelectedItem: (item: string) => void;
-}
-
-function ListGroup({ items, heading, onSelectedItem }: ListGroupProps) {
-  const [selectedIndex, setSelectedIndex] = useState(-1); //useState hook is used to say that component state will change over a period of time
+function ListGroup() {
+  const items = ["NewYork", "Chicago", "Arkansas", "Minnesota", "Tennesse"];
 
   return (
     <>
-      <h1>{heading}</h1>
-      {items.length === 0 && <p>No item found</p>}
+      <h1>ListGroup</h1>
       <ul className="list-group">
-        {items.map((item, index) => (
-          <li
-            className={
-              selectedIndex === index
-                ? "list-group-item active"
-                : "list-group-item"
-            }
-            key={item}
-            onClick={() => {
-              setSelectedIndex(index);
-              onSelectedItem(item);
-            }}
-          >
-            {item}
-          </li>
+        {items.map((item) => (
+          <li key={item}>{item}</li>
         ))}
       </ul>
     </>
   );
 }
-
 export default ListGroup;
